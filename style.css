@@ -1,0 +1,315 @@
+html, body {
+    margin: 0px;
+	padding: 0px;
+	width: 100%;
+    height: 100%;
+    background: #ffffff;
+}
+
+.header{
+    height: 215px;
+    width: 1032px;
+    display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+    margin-left: auto;
+    margin-right: auto;
+}
+.logo{
+    width: 200px;
+    height: 60px;
+    margin-top: 50px;
+    margin-right: 493px;
+}
+.buttonSignin{
+    margin-top: 54px;
+    margin-right: 32px;
+}
+.buttonSignin button{
+    width: 130px;
+    height: 36px;
+    background: #07319d;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
+.buttonSignup{
+    margin-top: 54px;
+}
+.buttonSignup button, .buttonExit button{
+    font-size: 14px;
+    color: #07319d;  
+    background: #ffffff;
+    border: 0px; 
+    cursor: pointer; 
+}
+.buttonExit{
+    margin-top: 10px;
+    left: 999px;
+    top: 65px;
+}
+
+
+
+.grid{
+    width: 1032px;
+    top: 215px;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.tile{
+    width: 304px;
+    height: 415px;
+    cursor: pointer;
+    background: white;
+    box-shadow: 0px 2px 4px rgba(8, 35, 48, 0.15);
+    margin-right: 40px;
+    margin-bottom: 40px;
+}
+.tileImg {
+    width: 100%;
+    height: 315px;
+}
+@keyframes likeAnimation {
+    0%	{ opacity: 0; }
+	30%	{ opacity: 1; }
+	100%{ opacity: 0; }
+}
+.like{
+    position: relative;
+    left: 31%;
+    top: -50%;
+    opacity: 0;
+}
+
+.like_event {      
+    animation:  likeAnimation 4s ease;
+    /* -webkit-animation-name: likeAnimation ease-in-out;
+    -webkit-animation-duration: 1.5s;
+    animation-name: likeAnimation ease-in-out;
+    animation-duration: 1.5s; */
+}
+.tileLabel{
+    font-size: 14px;
+    line-height: 24px;
+    width: 234px;
+    height: 24px;
+    position: relative;
+    left: -85px;
+    top: -18%;
+}
+.tile_button{
+    width: 116px;
+    height: 28px;
+    position: relative;
+    border-radius: 2px;
+    box-shadow: 1px 0px 4px rgba(0, 0, 0, 0.2);
+    bottom: 56px;
+    margin-left: 24px;
+    background: white;
+    color: #07319d;
+    border: 0px;
+}
+.tile_img_like{
+    width: 16px;
+    height: 14px;
+    margin-right: 7px;
+}
+.tile_img_comment{
+    width: 16px;
+    height: 16px;
+    margin-right: 7px;
+}
+
+
+
+.modalSignin{
+    position: absolute;
+    width: 393px;
+    height: 440px;
+    top: 218px;
+    left: 444px;
+    background-color: white;
+}
+.formModal_header{
+    display: flex;
+    justify-content: flex-end;
+    font-size: 8px;
+    line-height: 9px;
+}
+.formModal_header p{
+    margin-top: 17px;
+    margin-right: 8px;
+    font-size: 14px;
+}
+.formModal_header a{
+    margin-top: 17px;
+    margin-right: 28px;
+    color: #07319d;
+    text-decoration: none;
+}
+.formModal_redirect{
+    margin-top: 5px;
+    height: 34px;
+    border: 0px;
+    background: white;
+}
+.formModal_body{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 56px;
+    top: 105px;
+    right: 56px;
+    bottom: 70px;
+    justify-content: space-between;
+}
+.formModal_body button{
+    width: 281px;
+    height: 36px;
+    background: #07319d;
+    border-radius: 4px;
+    color: white;
+    font-size: 10px;
+}
+.formModal_body input{
+    height: 30px;
+    border: none;
+    border-bottom: 0.5px solid #dde2e8;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+.modalSignup{
+    position: absolute;
+    width: 393px;
+    height: 569px;
+    top: 154px;
+    left: 444px;
+    background-color: white;
+}
+
+
+
+
+
+.closeModal{
+    position: absolute;
+    left: 30px;
+    bottom: 10px;
+    height: 25px;
+    width: 80px;
+}
+.picturModalImg{
+    width: 651px;
+    height: 638px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+}
+.picturModalLabel{
+    font-size: 21px;
+    line-height: 24px;
+    color: black;
+}
+.picturModalButton{
+    width: 310px;
+    height: 60px;
+    background: white;
+    border:0px;
+    border-radius: 2px;
+    box-shadow: 0px 0px 4px rgba(8, 35, 48, 0.2);
+    margin-right: 32px;
+}
+.picturModalButton_div{
+    position: absolute;
+    bottom: 45px;
+}
+
+
+
+.commentModal{
+    display: flex;
+    flex-direction: column;
+    margin: 17px;
+}
+.commentModal_firstComment{
+    margin-top: 0px;  
+}
+.commentModal_firstComment_ul{
+    list-style-type: none;
+    margin-left: 0;
+    padding: 0;
+}
+.commentModal_firstComment_li{
+    margin-top: 25px;
+     
+}
+.commentModal_firstComment_li:hover .commentModal_ferstComment_delet{
+    width: 30px;
+    height: 10px;
+    border: 0;
+    background: white;
+    color: red;
+    opacity: 1;
+}{
+}
+.commentModal_NextComment{
+    display: flex;
+    flex-direction: column;
+}
+.commentModal_NextComment label{
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.25);
+}
+.commentModal_NextComment input{
+    height: 24px;
+    width: 561px;
+    background: white;
+    border: none;
+    border-bottom: 1px solid rgba(42, 73, 94, 0.12);
+    margin-bottom: 24px;
+}
+.commentModal_NextComment_send{
+    width: 164px;
+    height: 44px;
+    border-radius: 4px;
+    background: #07319d;
+    color: white;
+    margin-top: 68px;
+    margin-left: 17px;
+    border:0px;
+}
+.commentModal_NextComment_cancel{
+    width: 164px;
+    height: 44px;
+    background: white;
+    color: #07319d;
+    margin-top: 68px;
+    border:0px;
+}
+.commentModal_ferstComment_delet{
+    width: 30px;
+    height: 10px;
+    border: 0;
+    background: white;
+    color: red;
+    opacity: 0;
+}
+
+.comentsColumn{
+    display: flex;
+    flex-direction: row;
+}
+
+button, 
+button:active, 
+button:focus {
+    outline: none;
+}
+
+
