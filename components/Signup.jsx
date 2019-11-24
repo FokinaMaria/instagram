@@ -9,12 +9,13 @@ const Signup = params => {
     email: '',
     password: ''
   });
-  
+
   const signupCurrentCloseModal = e => {
     params.signupClose();
     axios.put('/user', user).then(req => {
       console.log('qqqqqq2', req);
     });
+    window.localStorage.setItem('rr_login', user.userName);
   };
 
   const redirectSignup = e => {

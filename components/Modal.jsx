@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import lik from './font/Liks.png';
 import coment from './font/Comments.png';
-const uuid=require('uuid/v4');
+const uuid = require('uuid/v4');
 
 import axios from 'axios';
 
@@ -12,11 +12,7 @@ const Modal = ({ history }) => {
   const textInput = React.createRef();
   const [showButton, setshowButton] = useState(false);
   const [countComment, setCountComment] = useState(0);
-  const [currentComment, setCurrentCommet] = useState(
-    {
-      text: ''      
-    }
-  );
+  const [currentComment, setCurrentCommet] = useState('');
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
@@ -24,32 +20,43 @@ const Modal = ({ history }) => {
     Promise.all([
       axios.get('/images').then(req => {
         data.comment = req.data[data.id].comment;
-        setComments(data.comment)
+        setComments(data.comment);
         setCountComment(req.data[data.id].commentCount)
       })
     ]).then(() => { })
       .catch(ex => console.error(ex));
-    ac.abort(); 
+    ac.abort();
   }, []);
 
-  const deleteComment = (value) => {
-    axios.delete(`/deleteComment`, { params: {value}}).then(req => {  
-        setCountComment(countComment - 1);
-        setComments(req.data);        
-      }
-     )
-  }
+  const deleteComment = value => {
+    axios.delete(`/deleteComment`, { params: { value } }).then(req => {
+      setCountComment(countComment - 1);
+      setComments(req.data);
+    });
+  };
 
   const addComment = e => {
     //e.preventDefault();
     setCountComment(countComment + 1);
-    let genUuid=uuid();
-    setComments([...comments, { id: data.id, autor: window.localStorage.getItem('rr_login'), text: currentComment.text, deleteBindId: genUuid }])
-    axios.post('/comment', { id: data.id, autor: window.localStorage.getItem('rr_login'), text: currentComment.text, deleteBindId: genUuid }).then(req => {
-    })
+    let genUuid = uuid();
+    setComments([
+      ...comments,
+      {
+        id: data.id,
+        autor: window.localStorage.getItem('rr_login'),
+        text: currentComment.text,
+        deleteBindId: genUuid
+      }
+    ]);
+    axios
+      .post('/comment', {
+        id: data.id,
+        autor: window.localStorage.getItem('rr_login'),
+        text: currentComment.text,
+        deleteBindId: genUuid
+      })
+      .then(() => {});
   };
- 
-
 
   const clearEvant = e => {
     setCurrentCommet({

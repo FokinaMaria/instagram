@@ -54,6 +54,7 @@ app.delete('/deleteComment', (req, res) => {
 
 app.put('/user', (req, res) => {
   users.push(req.body);
+  console.log(users);
   res.sendStatus(200);
 });
 
@@ -61,7 +62,6 @@ app.post('/user', (req, res) => {
   let emailValid = req.body.login.lastIndexOf('@');
 
   users.forEach(elem => {
-    console.log(elem.userName);
     if (
       emailValid === -1 &&
       elem.userName === req.body.login &&

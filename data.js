@@ -91,7 +91,6 @@ let gallery = [
 
 let users = [
   {
-    id: 0,
     userName: 'Maria',
     login: 'Ari',
     email: 'zxc',
