@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import axios from 'axios';
+import { postSignin } from '../sources/index';
 
 const Signin = value => {
   const [user, setUser] = useState({
@@ -13,8 +13,7 @@ const Signin = value => {
   const handleCloseModal = e => {
     value.closeModal();
 
-    axios.post('/user', user).then(req => {
-      console.log(req);
+    postSignin(user).then(req => {
       if (req.data !== 'error') {
         window.localStorage.setItem('rr_login', req.data);
       }

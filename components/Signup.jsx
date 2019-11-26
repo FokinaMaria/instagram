@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-import axios from 'axios';
+import { putSignup } from '../sources/index';
+//import axios from 'axios';
 
 const Signup = params => {
   const [user, setUser] = useState({
@@ -12,9 +13,7 @@ const Signup = params => {
 
   const signupCurrentCloseModal = e => {
     params.signupClose();
-    axios.put('/user', user).then(req => {
-      console.log('qqqqqq2', req);
-    });
+    putSignup(user).then(req => {});
     window.localStorage.setItem('rr_login', user.userName);
   };
 

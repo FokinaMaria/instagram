@@ -1,29 +1,22 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import Tape from './Tape';
 
 import { getUsers } from 'source';
 
+const Grid = () => {
+  const [gallery, setGallery] = useState([]);
 
-class Grid extends Component {
-  state = {
-    gallery: []
-  };
+  useEffect(() => {
+    getUsers().then(({ data }) => setGallery(data));
+  }, []);
 
-  componentDidMount() {
-    getUsers()
-      .then(({ data }) => this.setState({ gallery: data }))
-  }
+  return (
+    <div className="grid">
+      {gallery.map(data => (
+        <Tape data={data} key={data.id} />
+      ))}
+    </div>
+  );
+};
 
-  render() {
-    const { gallery } = this.state;
-
-    return (
-      <div className="grid">
-        {gallery.map(data => {
-          return <Tape data={data} key={data.id} />;
-        })}
-      </div>
-    );
-  }
-}
 export default Grid;

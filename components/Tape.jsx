@@ -14,14 +14,17 @@ const Tape = props => {
 
   const handleLike = e => {
     console.log(key);
+    if (window.localStorage.getItem('rr_login') !== null) {
+      if (hasLike) setIsLike(false);
+      else setIsLike(true);
 
-    if (hasLike) setIsLike(false);
-    else setIsLike(true);
-
-    axios.post('/images', props.data).then(req => {
-      setCountLike(req.data.likeCount);
-      setCountComment(req.data.commentCount);
-    });
+      axios.post('/images', props.data).then(req => {
+        setCountLike(req.data.likeCount);
+        setCountComment(req.data.commentCount);
+      });
+    } else {
+      null;
+    }
   };
 
   const showModal = value => {

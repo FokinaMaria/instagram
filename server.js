@@ -19,7 +19,6 @@ app.get('/images', (req, res) => {
 });
 
 app.post('/images', (req, res) => {
-  console.log(req.body.id);
   gallery.forEach(elem => {
     if (elem.id === req.body.id) {
       elem.likeCount++;
@@ -35,7 +34,6 @@ app.post('/comment', (req, res) => {
       elem.commentCount++;
     }
   });
-  console.log(gallery);
   res.send(gallery);
 });
 
@@ -54,33 +52,35 @@ app.delete('/deleteComment', (req, res) => {
 
 app.put('/user', (req, res) => {
   users.push(req.body);
-  console.log(users);
   res.sendStatus(200);
 });
 
 app.post('/user', (req, res) => {
   let emailValid = req.body.login.lastIndexOf('@');
-
+  let showError = 1;
+  let showLogin = '';
   users.forEach(elem => {
     if (
       emailValid === -1 &&
       elem.userName === req.body.login &&
       elem.password === req.body.password
     ) {
-      console.log(elem);
-      res.send(elem.login);
+      showError = 0;
+      showLogin = elem.login;
     } else if (
       emailValid !== -1 &&
       elem.email === req.body.login &&
       elem.password === req.body.password
     ) {
-      console.log('2');
-      res.send(elem.login);
-    } else {
-      console.log('3');
-      res.send('error');
+      showError = 0;
+      showLogin = elem.login;
     }
   });
+  if (showError === 1) {
+    res.send('error');
+  } else {
+    res.send(showLogin);
+  }
 });
 
 app.listen(3000, () => console.log('port 3000'));

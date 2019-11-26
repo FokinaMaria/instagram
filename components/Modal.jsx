@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import lik from './font/Liks.png';
 import coment from './font/Comments.png';
 const uuid = require('uuid/v4');
+import { getImages } from '../sources/index';
 
 import axios from 'axios';
 
 const Modal = ({ history }) => {
-  console.log('history', history);
   const data = history.location.state.data;
 
   const textInput = React.createRef();
@@ -18,12 +18,13 @@ const Modal = ({ history }) => {
   useEffect(() => {
     const ac = new AbortController();
     Promise.all([
-      axios.get('/images').then(req => {
+      getImages().then(req => {
         data.comment = req.data[data.id].comment;
         setComments(data.comment);
         setCountComment(req.data[data.id].commentCount)
       })
-    ]).then(() => { })
+    ])
+      .then(() => {})
       .catch(ex => console.error(ex));
     ac.abort();
   }, []);
@@ -36,7 +37,6 @@ const Modal = ({ history }) => {
   };
 
   const addComment = e => {
-    //e.preventDefault();
     setCountComment(countComment + 1);
     let genUuid = uuid();
     setComments([
@@ -44,7 +44,7 @@ const Modal = ({ history }) => {
       {
         id: data.id,
         autor: window.localStorage.getItem('rr_login'),
-        text: currentComment.text,
+        text: currentComment,
         deleteBindId: genUuid
       }
     ]);
@@ -52,17 +52,17 @@ const Modal = ({ history }) => {
       .post('/comment', {
         id: data.id,
         autor: window.localStorage.getItem('rr_login'),
-        text: currentComment.text,
+        text: currentComment,
         deleteBindId: genUuid
       })
-      .then(() => {});
+      .then(() => {
+        setCurrentCommet('');
+      });
   };
 
   const clearEvant = e => {
-    setCurrentCommet({
-      text: ''
-    });
-  }
+    setCurrentCommet('');
+  };
 
   const backEventModal = e => {
     e.stopPropagation();
@@ -115,7 +115,7 @@ const Modal = ({ history }) => {
               <ul className="commentModal_firstComment_ul">
                 {comments.map((data, index) => {
                   return (
-                    <li className="commentModal_firstComment_li" key={index} >
+                    <li className="commentModal_firstComment_li" key={index}>
                       <label>
                         <span style={{ color: '#07319D', margin: '15px' }}>
                           {data.autor}
@@ -147,10 +147,10 @@ const Modal = ({ history }) => {
               <label>comment</label>
               <input
                 type="search"
-                value={currentComment.text}
+                value={currentComment}
                 ref={textInput}
                 required
-                onChange={e => setCurrentCommet({ ...currentComment, text: e.target.value })}
+                onChange={e => setCurrentCommet(e.target.value)}
               />
               {showButton ? (
                 <div>
@@ -160,7 +160,12 @@ const Modal = ({ history }) => {
                   >
                     Отправить
                   </button>
-                  <button className="commentModal_NextComment_cancel" onClick={clearEvant}>Отменить</button>
+                  <button
+                    className="commentModal_NextComment_cancel"
+                    onClick={clearEvant}
+                  >
+                    Отменить
+                  </button>
                 </div>
               ) : null}
             </div>
